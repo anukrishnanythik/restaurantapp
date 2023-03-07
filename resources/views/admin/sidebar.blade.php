@@ -12,7 +12,7 @@
 
 
       <li class="nav-item menu-items">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('user')}}">
           <span class="menu-icon">
             <i class="mdi mdi-file-document-box"></i>
           </span>
