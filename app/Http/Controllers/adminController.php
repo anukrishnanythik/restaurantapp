@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Food;
 use App\Models\User;
 use App\Models\Reservation;
+use App\Models\Chef;
 
 
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class adminController extends Controller
         $user->delete();
         return redirect()->back();
        }
-
+//Food
        public function showfoodmenu(){
         $food= Food::all();
         return view('admin.showfoodmenu',compact('food'));
@@ -60,7 +61,6 @@ class adminController extends Controller
                 return redirect()->back();
            }
 
-
            public function updatefoodmenu(Request $request, $id)
              {
                $food= Food::findOrFail(decrypt($id));
@@ -84,6 +84,7 @@ class adminController extends Controller
         return redirect()->route('showfoodmenu')->with('message',"menu updated succesfully!!");
              }
 
+             //reservation
              public function uploadreservation(Request $request){
                 $input = $request->all();
                 $request->validate([
@@ -103,5 +104,68 @@ class adminController extends Controller
                     $reservation= Reservation::all();
                     return view('admin.showreservation',compact('reservation'));
                    }
+
+                   //chef
+
+                   public function showchef(){
+                    $chef= Chef::all();
+                    return view('admin.showchef',compact('chef'));
+                   }
+
+                   public function addchef(){
+                    return view('admin.addchef');
+                   }
+
+                public function uploadchef(Request $request){
+                    $input = $request->all();
+                    $request->validate([
+                        'name' => 'required',
+                        'speciality' => 'required',
+                        'image' => 'required',
+                    ]);
+                    if(request()->hasFile('image'))
+                    {
+                        $extension =request('image')->extension();
+                        $file ='user_pic'. time().'.'.$extension;
+                        request('image') ->storeAs('image',$file);
+                        $input['image'] =$file;
+                    }
+                    Chef::create($input);
+                    return redirect()->route('showchef')->with('message',"chef added succesfully!!");
+                    }
+
+                        public function editchef($id){
+                            $chef= Chef::findOrFail(decrypt($id));
+                            return view('admin.editchef',compact('chef'));
+                           }
+
+                            public function deletechef($id){
+                                $chef= Chef::findOrFail(decrypt($id));
+                                $chef->delete();
+                                return redirect()->back();
+                           }
+
+                           public function updatechef(Request $request, $id)
+                             {
+                               $chef= Chef::findOrFail(decrypt($id));
+                                $input = $request->all();
+
+                              $request->validate([
+                                'name' => 'required',
+                                'speciality' => 'required',
+                                'image' => 'required',
+                            ]);
+                           if(request()->hasFile('image'))
+                           {
+                           $extension =request('image')->extension();
+                           $file ='user_pic'. time().'.'.$extension;
+                           request('image') ->storeAs('image',$file);
+                           $input['image'] =$file;
+                           }
+
+                          $chef-> update($input);
+                        return redirect()->route('showchef')->with('message',"chef updated succesfully!!");
+                             }
+
 
             }

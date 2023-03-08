@@ -3,6 +3,8 @@
 
 
 <head>
+    <base href ="/public">
+    @include('admin.css')
     @include('admin.css')
  </head>
 
@@ -27,46 +29,35 @@
 
             <div class="col-8  text-light">
             <br>
-              <form action="{{route('uploadfoodmenu')}}" method="post" enctype="multipart/form-data" >
+              <form action="{{route('updatechef',encrypt($chef->id))}})}}" method="post" enctype="multipart/form-data" >
             @csrf
-
                     <div class="form-group">
-                        <label  class="fs-6" for="name">Title:</label>
-                        <input type="text" class="form-control  bg-light text-dark " id="title" name="title"   value={{old('title')}}>
+                        <label  class="fs-6" for="name">Name:</label>
+                        <input type="text" class="form-control  bg-light text-dark " id="name" name="name" value="{{$chef->name}}">
                       </div>
-                      @error('title')
+                      @error('name')
                       <p class="text-danger">{{$message}}</p>
                             @enderror
 
-
                       <div class="form-group">
-                        <label class="fs-6" for="price">Price:</label>
-                        <input   type="number" class="form-control text-dark bg-light" id="price" name="price"   value={{old('price')}}>
+                        <label class="fs-6" for="price">Speciality:</label>
+                        <input   type="text" class="form-control text-dark bg-light" id="speciality" name="speciality"  value="{{$chef->speciality}}">
                       </div>
                       @error('price')
                       <p class="text-danger">{{$message}}</p>
                             @enderror
 
-
                       <div class="form-group">
                         <label  class="fs-6 " for="image">Image:</label>
                         <br>
-                        <input  type="file" class="form-control bg-light text-dark fs-6" id="image" name="image"  value={{old('image')}} >
+                        <input  type="file" class="form-control bg-light text-dark fs-6" id="image" name="image"  value="{{$chef->image}}">
                       </div>
                       @error('image')
                       <p class="text-danger">{{$message}}</p>
                             @enderror
 
                       <div class="form-group">
-                        <label  class="fs-6" for="description">Description:</label>
-                        <input type="text" class="form-control text-dark bg-light" id="description" name="description"  value={{old('description')}} >
-                      </div>
-                      @error('description')
-                      <p class="text-danger">{{$message}}</p>
-                            @enderror
-<br>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-lg btn-primary"> Add Food</button>
+                        <button type="submit" class="btn btn-lg btn-primary"> Update Chef</button>
 
                      </div>
           </form>

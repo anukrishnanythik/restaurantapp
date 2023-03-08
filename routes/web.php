@@ -24,19 +24,20 @@ Route::get('/deleteuser/{id}', [adminController::class,"deleteuser"])->name('del
 
 Route::get('/foodmenu', [adminController::class,"showfoodmenu"])->name('showfoodmenu');
 Route::get('/addfoodmenu', [adminController::class,"addfoodmenu"])->name('addfoodmenu');
-Route::post('/upload', [adminController::class,"uploadfoodmenu"])->name('uploadfoodmenu');
+Route::post('/uploadfoodmenu', [adminController::class,"uploadfoodmenu"])->name('uploadfoodmenu');
 Route::get('/editfoodmenu/{id}', [adminController::class,"editfoodmenu"])->name('editfoodmenu');
 Route::get('/deletefoodmenu/{id}', [adminController::class,"deletefoodmenu"])->name('deletefoodmenu');
 Route::post('/updatefoodmenu/{id}', [adminController::class,"updatefoodmenu"])->name('updatefoodmenu');
 
-Route::post('/upload', 'adminController@uploadreservation')->name('uploadreservation');
+Route::post('/up', 'adminController@uploadreservation')->name('uploadreservation');
 Route::get('/reservation', 'adminController@showreservation')->name('showreservation');
 
-
-
-// Route::get('/addchef', 'adminController@addchef')->name('addchef');
-// Route::post('/upload', 'adminController@uploadchef')->name('uploadchef');
-
+ Route::get('/addchef', 'adminController@addchef')->name('addchef');
+ Route::post('/uploadreservation', 'adminController@uploadchef')->name('uploadchef');
+ Route::get('/showchef', 'adminController@showchef')->name('showchef');
+ Route::get('/editchef/{id}', 'adminController@editchef')->name('editchef');
+ Route::get('/deletechef/{id}', 'adminController@deletechef')->name('deletechef');
+ Route::post('/updatechef/{id}', 'adminController@updatechef')->name('updatechef');
 
 
 
