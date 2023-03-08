@@ -22,6 +22,12 @@ Route::get('/redirects', [homeController::class,"redirects"]);
 Route::get('/user', [adminController::class,"user"])->name('user');
 Route::get('/deleteuser/{id}', [adminController::class,"deleteuser"])->name('deleteuser');
 
+Route::get('/showfoodmenu', [adminController::class,"showfoodmenu"])->name('showfoodmenu');
+Route::get('/addfoodmenu', [adminController::class,"addfoodmenu"])->name('addfoodmenu');
+Route::post('/upload', [adminController::class,"uploadfoodmenu"])->name('uploadfoodmenu');
+Route::get('/editfoodmenu/{id}', [adminController::class,"editfoodmenu"])->name('editfoodmenu');
+Route::get('/deletefoodmenu/{id}', [adminController::class,"deletefoodmenu"])->name('deletefoodmenu');
+Route::post('/updatefoodmenu/{id}', [adminController::class,"updatefoodmenu"])->name('updatefoodmenu');
 
 
 
