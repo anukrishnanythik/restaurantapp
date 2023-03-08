@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Food;
 use App\Models\User;
+use App\Models\Reservation;
+
 
 use Illuminate\Http\Request;
 
@@ -18,6 +20,7 @@ class adminController extends Controller
         $user->delete();
         return redirect()->back();
        }
+
        public function showfoodmenu(){
         $food= Food::all();
         return view('admin.showfoodmenu',compact('food'));
@@ -68,21 +71,37 @@ class adminController extends Controller
                 'price' => 'required',
                 'image' => 'required',
                 'description' => 'required',
-
             ]);
            if(request()->hasFile('image'))
            {
-
            $extension =request('image')->extension();
            $file ='user_pic'. time().'.'.$extension;
            request('image') ->storeAs('image',$file);
            $input['image'] =$file;
-
            }
 
           $food-> update($input);
-
-
-            return redirect()->route('showfoodmenu')->with('message',"menu updated succesfully!!");
+        return redirect()->route('showfoodmenu')->with('message',"menu updated succesfully!!");
              }
+
+             public function uploadreservation(Request $request){
+                $input = $request->all();
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'phone' => 'required',
+                    'guest' => 'required',
+                    'date' => 'required',
+                    'time' => 'required',
+                    'message' => 'required',
+                ]);
+                Reservation::create($input);
+                return redirect()->back();
+                }
+
+                public function showreservation(){
+                    $reservation= Reservation::all();
+                    return view('admin.showreservation',compact('reservation'));
+                   }
+
             }
