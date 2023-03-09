@@ -15,6 +15,8 @@
 
 
                 @foreach($food as $row)
+              <form action="{{route('addcart',encrypt($row->id))}}" method="post">
+@csrf
                 <div class="item">
                     <div style="background-image:url('storage/image/{{$row->image}}');" class='card '>
 
@@ -28,7 +30,11 @@
                           </div>
                         </div>
                     </div>
+                    <input type="number" min="1" id="quantity" name="quantity" class="w-md">
+                    <input type="submit" value="Add cart">
+
                 </div>
+            </form>
           @endforeach
 
 

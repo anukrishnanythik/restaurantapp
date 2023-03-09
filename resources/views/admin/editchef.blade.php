@@ -29,7 +29,7 @@
 
             <div class="col-8  text-light">
             <br>
-              <form action="{{route('updatechef',encrypt($chef->id))}})}}" method="post" enctype="multipart/form-data" >
+              <form action="{{route('updatechef',encrypt($chef->id))}}" method="post" enctype="multipart/form-data" >
             @csrf
                     <div class="form-group">
                         <label  class="fs-6" for="name">Name:</label>

@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                         <label  class="fs-6" for="name">Title:</label>
-                        <input type="text" class="form-control  bg-light text-dark " id="title" name="title"   value={{old('title')}}>
+                        <input type="text" class="form-control text-dark " id="title" name="title"   value={{old('title')}}>
                       </div>
                       @error('title')
                       <p class="text-danger">{{$message}}</p>

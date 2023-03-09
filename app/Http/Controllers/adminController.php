@@ -5,6 +5,7 @@ use App\Models\Food;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Chef;
+use App\Models\Order;
 
 
 use Illuminate\Http\Request;
@@ -167,5 +168,11 @@ class adminController extends Controller
                         return redirect()->route('showchef')->with('message',"chef updated succesfully!!");
                              }
 
+//order
+public function showorder(){
+    $order= Order::all();
+    return view('admin.showorder',compact('order'));
+   }
 
-            }
+
+        }

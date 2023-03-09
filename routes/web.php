@@ -19,6 +19,12 @@ use App\Http\Controllers\adminController;
 Route::get('/', [homeController::class,"index"]);
 Route::get('/redirects', [homeController::class,"redirects"]);
 
+Route::post('/addcart/{id}', [homeController::class,"addcart"])->name('addcart');
+Route::get('/showcart/{id}', [homeController::class,"showcart"])->name('showcart');
+Route::get('/deleteorder/{id}', [homeController::class,"deleteorder"])->name('deleteorder');
+Route::post('/orderdetails', [homeController::class,"orderdetails"])->name('orderdetails');
+
+
 Route::get('/user', [adminController::class,"user"])->name('user');
 Route::get('/deleteuser/{id}', [adminController::class,"deleteuser"])->name('deleteuser');
 
@@ -39,6 +45,7 @@ Route::get('/reservation', 'adminController@showreservation')->name('showreserva
  Route::get('/deletechef/{id}', 'adminController@deletechef')->name('deletechef');
  Route::post('/updatechef/{id}', 'adminController@updatechef')->name('updatechef');
 
+Route::get('/order', [adminController::class,"showorder"])->name('showorder');
 
 
 Route::middleware([
